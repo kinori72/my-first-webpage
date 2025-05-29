@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>松本匡生の生態</title>
+    <style>
+        :root {
+            --background-color: #f8f8fa; /* 少し明るい背景 */
+            --card-background-color: #ffffff;
+            --text-color-primary: #1a1a1c; /* より濃い黒に近いテキスト */
+            --text-color-secondary: #666666; /* サブテキストは少し濃く */
+            --accent-color-blue: #007aff;
+            --accent-color-orange: #ff9500; /* 新しいアクセントカラー: オレンジ */
+            --accent-color-green: #34c759;  /* 新しいアクセントカラー: グリーン */
+            --accent-color-light-blue: #e6f3ff;
+            --border-color: #e0e0e6; /* 少し柔らかい境界線 */
+            --shadow-color: rgba(0, 0, 0, 0.07);
+            --animation-duration-fast: 0.4s;
+            --animation-duration-medium: 0.7s;
+            --animation-duration-slow: 0.9s;
+        }
+
+        /* 基本スタイルとリセット */
+        body {
+            font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* SF Proを優先 */
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color-primary);
+            line-height: 1.75; /* 行間を少し広げる */
+            overflow-x: hidden;
+            opacity: 0;
+            animation: fadeInPage var(--animation-duration-slow) ease-out forwards;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: scale(0.98); } /* 開始時に少し縮小 */
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* ヘッダー */
+        header {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: linear-gradient(145deg, #ffffff 0%, #f0f2f5 100%); /* より明るいグラデーション */
+            color: var(--text-color-primary);
+            animation: slideDownHeader var(--animation-duration-medium) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            opacity: 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        @keyframes slideDownHeader {
+            from { opacity: 0; transform: translateY(-60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header h1 {
+            font-size: 3.8em;
+            font-weight: 700; /* より太く */
+            margin: 0;
+            letter-spacing: -1.5px; /* 字間を詰める */
+            text-shadow: 0 3px 6px rgba(0,0,0,0.04);
+            color: transparent; /* テキストを透明に */
+            background: linear-gradient(45deg, var(--accent-color-blue), var(--accent-color-green), var(--accent-color-orange));
+            background-clip: text;
+            -webkit-background-clip: text; /* Safari対応 */
+            animation: textShine 5s linear infinite alternate;
+        }
+
+        @keyframes textShine {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+
+        /* メインコンテンツエリア */
+        main {
+            max-width: 900px; /* 少し幅を広げる */
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        /* 各セクションのスタイル（カード風デザイン） */
+        section {
+            background-color: var(--card-background-color);
+            margin-bottom: 50px;
+            padding: 40px 45px; /* パディングを増やす */
+            border-radius: 20px; /* 角丸を大きく */
+            box-shadow: 0 10px 30px var(--shadow-color);
+            opacity: 0;
+            transform: translateY(50px) scale(0.95);
+            animation: fadeInUpCard var(--animation-duration-medium) cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; /* イージング変更 */
+            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        section:hover {
+            transform: translateY(40px) scale(1.025);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+        }
+
+        /* セクションごとのアニメーション遅延 */
+        section:nth-of-type(1) { animation-delay: 0.2s; }
+        section:nth-of-type(2) { animation-delay: 0.35s; }
+        section:nth-of-type(3) { animation-delay: 0.5s; }
+        section:nth-of-type(4) { animation-delay: 0.65s; }
+        section:nth-of-type(5) { animation-delay: 0.8s; }
+        section:nth-of-type(6) { animation-delay: 0.95s; }
+
+
+        @keyframes fadeInUpCard {
+            from { opacity: 0; transform: translateY(50px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        section h2 {
+            font-size: 2.4em; /* 少し大きく */
+            font-weight: 600;
+            color: var(--text-color-primary);
+            margin-top: 0;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 18px;
+            display: inline-block; /* 下線アニメーションのため */
+        }
+        section h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0%;
+            height: 4px; /* 少し太く */
+            /* セクションごとに下線の色を変える */
+            transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        section:nth-of-type(odd) h2::after { background-color: var(--accent-color-orange); }
+        section:nth-of-type(even) h2::after { background-color: var(--accent-color-green); }
+        section#profile h2::after, section#recommendation h2::after { background-color: var(--accent-color-blue); }
+
+
+        section:hover h2::after {
+            width: 100%; /* ホバー時に下線が完全に伸びる */
+        }
+
+
+        section p, section ul {
+            font-size: 1.2em; /* 少し大きく */
+            color: var(--text-color-secondary);
+        }
+
+        section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        section ul li {
+            background-color: var(--background-color);
+            padding: 15px 20px; /* パディングを増やす */
+            margin-bottom: 12px;
+            border-radius: 12px; /* 角丸を大きく */
+            opacity: 0;
+            transform: translateX(-30px) scale(0.9);
+            animation: slideInListItem var(--animation-duration-medium) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            transition: background-color 0.3s ease, transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.25s ease;
+            border-left: 4px solid transparent; /* ホバー時のアクセント用 */
+        }
+        /* リストアイテムのアニメーション遅延 */
+        section ul li:nth-child(1) { animation-delay: calc(var(--animation-delay) + 0.3s); }
+        section ul li:nth-child(2) { animation-delay: calc(var(--animation-delay) + 0.4s); }
+        section ul li:nth-child(3) { animation-delay: calc(var(--animation-delay) + 0.5s); }
+        section ul li:nth-child(4) { animation-delay: calc(var(--animation-delay) + 0.6s); }
+        section ul li:nth-child(5) { animation-delay: calc(var(--animation-delay) + 0.7s); }
+
+
+        @keyframes slideInListItem {
+            from { opacity: 0; transform: translateX(-30px) scale(0.9); }
+            to { opacity: 1; transform: translateX(0) scale(1); }
+        }
+
+        section ul li:hover {
+            background-color: #e0e7ff; /* ホバー時の背景色変更（青系） */
+            transform: translateX(8px) scale(1.03); /* ホバーで少し右にスライドし拡大 */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-left-color: var(--accent-color-blue);
+        }
+        section:nth-of-type(odd) ul li:hover { border-left-color: var(--accent-color-orange); }
+        section:nth-of-type(even) ul li:hover { border-left-color: var(--accent-color-green); }
+
+
+        /* リンクスタイル */
+        a {
+            color: var(--accent-color-blue);
+            text-decoration: none;
+            font-weight: 600; /* 少し太く */
+            position: relative; /* 下線アニメーションのため */
+            transition: color 0.3s ease;
+        }
+        a::after { /* リンクホバー時の下線アニメーション */
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--accent-color-orange);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        a:hover {
+            color: var(--accent-color-orange);
+        }
+        a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        
+        /* 強調表示用コンテナ */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--accent-color-light-blue) 0%, #d6eaff 100%); /* グラデーション背景 */
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 6px solid var(--accent-color-blue);
+            margin-top: 25px;
+            box-shadow: 0 5px 15px rgba(0, 122, 255, 0.1);
+            /* animation: pulseHighlight 2.5s infinite alternate ease-in-out; 控えめに */
+            transition: box-shadow 0.3s ease;
+        }
+        .highlight-box:hover {
+            box-shadow: 0 8px 25px rgba(0, 122, 255, 0.2);
+        }
+
+        .highlight-box p {
+            color: #004085; /* より濃いブルー系のテキスト */
+            margin-bottom: 12px;
+            font-size: 1.1em; /* 少し小さくして読みやすく */
+        }
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+        /* 強調表示内の太字 */
+        .highlight-box strong {
+            color: var(--accent-color-blue);
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            header h1 { font-size: 3em; }
+            section h2 { font-size: 2em; }
+            section { padding: 30px 25px; }
+        }
+         @media (max-width: 480px) {
+            header { padding: 40px 15px 25px; }
+            header h1 { font-size: 2.4em; letter-spacing: -0.5px; }
+            main { margin: 25px auto; }
+            section { padding: 25px 20px; margin-bottom: 30px; }
+            section h2 { font-size: 1.7em; margin-bottom:20px; padding-bottom:10px;}
+            section p, section ul { font-size: 1.05em; }
+            section ul li { padding: 12px 15px; margin-bottom:8px;}
+            .highlight-box { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>松本匡生の生態</h1>
+    </header>
+
+    <main>
+        <section id="profile">
+            <h2>プロフィール</h2>
+            <p><strong>活動名:</strong> 布団ちゃん</p>
+            <p><strong>本名:</strong> 松本 匡生 (まつもと まさお)</p>
+            <p><strong>出身地:</strong> 千葉県館山市</p>
+            <p><em>その歯に衣着せぬ語り口と、視聴者を惹きつけるカリスマ性で人気のストリーマー。圧倒的な存在感で配信界にその名を轟かせる。</em></p>
+        </section>
+
+        <section id="hobbies">
+            <h2>趣味</h2>
+            <ul>
+                <li>多彩なジャンルのゲームプレイ（格闘ゲームの深い造詣、FPSでの熱い戦い、話題の新作への挑戦など、その守備範囲は広い）</li>
+                <li>雑談配信（視聴者からのコメントを巧みに拾い上げ、時に鋭く、時にユーモラスに展開されるトークは必聴）</li>
+                <li>料理配信（時に豪快、時に繊細（？）な料理の腕前を披露し、視聴者の食欲を刺激する）</li>
+                <li>飲酒雑談（リラックスした雰囲気の中、普段聞けない本音や裏話が飛び出すことも）</li>
+            </ul>
+        </section>
+
+        <section id="skills">
+            <h2>特技・強み</h2>
+            <ul>
+                <li><strong style="color: var(--accent-color-orange);">神がかり的なトークスキル:</strong> どんな話題でも瞬時に面白く展開できる話術はまさに芸術。</li>
+                <li><strong style="color: var(--accent-color-green);">超人的な配信スタミナ:</strong> 何時間にも及ぶ長時間配信をものともせず、常に高いテンションを維持。</li>
+                <li><strong style="color: var(--accent-color-blue);">天性のリアクション芸:</strong> 驚き、喜び、怒り、悲しみ、全てがエンターテイメント。</li>
+                <li><strong style="color: var(--accent-color-orange);">ゲームへの深い理解と適応力:</strong> 初見のゲームでもすぐに本質を掴み、高度なプレイを見せる。</li>
+                <li><strong style="color: var(--accent-color-green);">規格外の企画力:</strong> 誰も思いつかないようなユニークな企画で、常に新しい刺激を提供。</li>
+            </ul>
+        </section>
+        
+        <section id="stream-features">
+            <h2>配信の特徴</h2>
+            <div class="highlight-box">
+                <p><strong>魂の叫び、本音トーク:</strong> 綺麗事一切なし！彼の言葉は常にストレート。その飾らないスタイルが、多くの熱狂的ファンを生み出しています。</p>
+                <p><strong>視聴者との"ガチ"な関係:</strong> コメントは戦場であり、愛のある罵詈雑言が飛び交うことも。しかし、それこそが彼と視聴者の絆の証。</p>
+                <p><strong>予測不能なエンターテイメント:</strong> 最新AAAタイトルからマイナーなインディーズゲーム、そして伝説のRTAまで。何が飛び出すかわからない玉手箱のような配信が魅力。</p>
+                <p><strong>喜怒哀楽フルスロットル:</strong> ゲームの展開に一喜一憂し、感情をむき出しにする姿は、見ているこちらも感情を揺さぶられます。まさに人間ドラマ。</p>
+            </div>
+        </section>
+
+        <section id="best-streams">
+            <h2>彼の配信ベスト3 (例)</h2>
+            <p>数々の伝説を残してきた彼の配信。ここではほんの一例を紹介します。クリックでYouTubeリンクに飛びます。（リンク先はご自身で設定してください）</p>
+            <ul>
+                <li>
+                    <a href="https://www.youtube.com/watch?v=VbSVvjGmPZM" target="_blank" rel="noopener noreferrer">1. 母の日泥酔配信ギターで弾き語り</a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/watch?v=OAOzAoEMgXw" target="_blank" rel="noopener noreferrer">2. 食マイク？！恐怖、マイクを食べる男</a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/watch?v=iZi74GfZ4ho&t=175s" target="_blank" rel="noopener noreferrer">3. ホラーゲームで大発狂！エミリーに追われる？</a>
+                </li>
+            </ul>
+        </section>
+
+        <section id="recommendation">
+            <h2>布団ちゃんをおすすめする理由</h2>
+            <p>「ただのゲーム配信者」では決して括れない、唯一無二のエンターテイナー。</p>
+            <div class="highlight-box">
+                <p>彼の配信は、日常の退屈を吹き飛ばす劇薬のようなもの。一度ハマれば抜け出せない強烈な中毒性があります。予測不能な展開、爆笑必至のトーク、そして時折見せる熱い魂に、あなたもきっと心を掴まれるはずです。</p>
+                <p>刺激的なエンタメ体験を求めるなら、今すぐ彼の配信へ！ただし、用法・用量を守って正しくお楽しみください（？）。</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
